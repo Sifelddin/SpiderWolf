@@ -1,43 +1,36 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
 import Head from 'next/head';
 import CssBaseline from '@mui/material/CssBaseline';
-import { CacheProvider, useTheme } from '@emotion/react';
-import createEmotionCache from '../utils/createEmotionCache';
-import { createTheme } from '@mui/system';
-import { ColorModProvider } from '../context/ColorModeContext';
-import useColorMode from '../hooks/useColorMode';
-import { createGenerateClassName, StylesProvider } from '@mui/styles';
+
+import { ThemeProvider } from '@mui/material';
 
 // Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache();
-const generateClassName = createGenerateClassName({
-  productionPrefix: 'c',
-});
 
-export default function MyApp(props: any) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  const theme: any = useTheme()
+const MyApp: React.FC<MyAppProps> = (props) => {
+  const { Component, pageProps } = props;
 
   return (
-    <StylesProvider generateClassName={generateClassName}>
-      <CacheProvider value={emotionCache}>
-        <ColorModProvider>
-          <Head>
-            <meta name="viewport" content="initial-scale=1, width=device-width" />
-            <meta name="theme-color" content={theme?.palette?.primary?.main} />
-          </Head>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ColorModProvider>
-      </CacheProvider>
-    </StylesProvider>
+    <>
+      <Head>
+        <title>My App</title>
+        <meta
+          name='viewport'
+          content='minimum-scale=1, initial-scale=1, width=device-width'
+        />
+      </Head>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
   );
-}
-
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  emotionCache: PropTypes.object,
-  pageProps: PropTypes.object.isRequired,
 };
+
+export default MyApp;
+
+interface MyAppProps {
+  Component: React.ElementType;
+  pageProps: object;
+}

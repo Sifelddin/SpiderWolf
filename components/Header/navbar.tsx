@@ -80,6 +80,7 @@ export default function Navbar() {
                     id="navbar-register-button"
                     variant="contained"
                     aria-haspopup="false"
+                    className={isActive('/account')}
                     sx={{
                         borderRadius: 50,
                         backgroundColor: 'light.main',

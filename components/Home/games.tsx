@@ -28,10 +28,10 @@ const StyledBox = styled(Box)(({theme}) => ({
 }))
 
 const StyledImage = styled(Image)(({}) => ({
-        display: 'block',
-        width: '100%',
-        objectFit: 'cover',
-        height: '200px'
+    display: 'block',
+    width: '100%',
+    objectFit: 'cover',
+    height: '200px'
 }))
 
 function Games() {

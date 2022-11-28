@@ -60,7 +60,7 @@ const StyledImage = styled(Image)(({theme}) => ({
 }));
 
 
-function Header() {
+function HeaderComponent() {
     //react useState hook pour l'état ouverture/fermeture
     const [open, setState] = React.useState(null);
 
@@ -83,13 +83,8 @@ function Header() {
         <AppBar position='static' sx={{margin: 0, backgroundColor: 'primary.main'}}>
             <Container maxWidth='xl' disableGutters>
                 <Toolbar>
-
-                    <Link href="/" scroll={false} passHref>
-                        <StyledImage src={logo.src} alt="Spiderwolf" />
-                    </Link>
-
+                    <StyledImage src={logo.src} alt="Spiderwolf" />
                     <Navbar/>
-
                     <StyledIconButton
                         edge='start'
                         color='inherit'
@@ -166,4 +161,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default HeaderComponent;

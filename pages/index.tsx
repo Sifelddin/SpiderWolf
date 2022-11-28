@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import HeaderComponent from '../components/Header'
+import FooterComponent from '../components/Footer'
 import HomeComponent from '../components/Home'
+import ScrollComponent from '../components/Scroll'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -15,11 +15,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <HeaderComponent />
 
       <HomeComponent />
 
-      <Footer />
+      <FooterComponent />
+
+      <ScrollComponent />
 
     </div>
   )

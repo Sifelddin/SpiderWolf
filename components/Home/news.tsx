@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Box, Container, Typography} from '@mui/material'
 import {styled} from '@mui/material/styles'
-import Carousel from "./carousel";
+import Slideshow from "./slideshow";
 
 const StyledBox = styled(Box)(({theme}) => ({
     display: 'flex',
@@ -30,7 +30,7 @@ export default function News() {
                 </Typography>
             </StyledBox>
             <StyledBox component="div">
-                <Carousel></Carousel>
+                <Slideshow></Slideshow>
             </StyledBox>
         </Container>
     )

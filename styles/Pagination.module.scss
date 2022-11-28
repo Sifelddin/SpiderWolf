@@ -1,0 +1,50 @@
+.pagination {
+  display        : flex;
+  justify-content: center;
+
+  ul {
+    list-style: none;
+    padding   : 0;
+  }
+
+  ul li {
+    display: inline-block;
+  }
+
+  ul li button {
+    padding  : 15px;
+    color    : #fff;
+    font-size: 24px;
+    border   : 1px solid rgba(0, 0, 0, 0.23);
+  }
+
+  ul li button:hover,
+  ul li button.active {
+    color: #204B8E;
+  }
+}
+.search {
+  &__input {
+    width     : 80%;
+    transition: transform 250ms ease-in-out;
+  }
+
+  &__input>div>input {
+    margin             : 30px 0;
+    background-color   : rgba(235, 235, 235, 0.2);
+    background-repeat  : no-repeat;
+    background-size    : 18px 18px;
+    background-position: 2% center;
+    border-radius      : 50px;
+    border             : 0;
+    transition         : all 250ms ease-in-out;
+    backface-visibility: hidden;
+    transform-style    : preserve-3d;
+    color              : #fff;
+    padding            : 15px 50px;
+    display            : block;
+    font-size          : 18px;
+    line-height        : 20px;
+  }
+
+}

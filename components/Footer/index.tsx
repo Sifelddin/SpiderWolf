@@ -47,7 +47,7 @@ const StyledImage = styled(Image)(({theme}) => ({
 }))
 
 
-function Footer() {
+function FooterComponent() {
     return (
         <StyledBox component="footer" position="static" sx={{margin: 0, backgroundColor: 'primary.main'}}>
             <Container maxWidth="xl">
@@ -113,4 +113,4 @@ function Footer() {
     )
 }
 
-export default Footer
+export default FooterComponent

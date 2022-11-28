@@ -12,21 +12,32 @@ export default async function categoryHandler(
       game = await prisma.game.findFirst({
         where: { id: id as string },
       });
-      game && res.status(200).json(game);
+      if (game) {
+        res.status(200).json(game);
+      } else {
+        res.status(404).end("game doesn't exist");
+      }
       break;
     case 'PUT':
-      game = await prisma.game.update({
-        where: { id: id as string },
-        data: req.body,
-      });
-      res.status(201).json(game);
+      try {
+        game = await prisma.game.update({
+          where: { id: id as string },
+          data: req.body,
+        });
+        res.status(201).json(game);
+      } catch (err) {
+        res.status(500).json(err);
+      }
       break;
     case 'DELETE':
-      game = await prisma.game.delete({
-        where: { id: id as string },
-      });
-      //{ message: 'category deleted successfully ' }
-      res.status(202).json(game);
+      try {
+        game = await prisma.game.delete({
+          where: { id: id as string },
+        });
+        res.status(204).json({ message: 'game deleted successfully' });
+      } catch (err) {
+        res.status(500).json(err);
+      }
       break;
     default:
       res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);

@@ -12,21 +12,33 @@ export default async function categoryHandler(
       user = await prisma.user.findFirst({
         where: { id: id as string },
       });
-      user && res.status(200).json(user);
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(404).end("user doesn't exist");
+      }
       break;
     case 'PUT':
-      user = await prisma.user.update({
-        where: { id: id as string },
-        data: req.body,
-      });
-      res.status(201).json(user);
+      try {
+        user = await prisma.user.update({
+          where: { id: id as string },
+          data: req.body,
+        });
+        res.status(201).json(user);
+      } catch (err) {
+        res.status(500).json(err);
+      }
       break;
     case 'DELETE':
-      user = await prisma.user.delete({
-        where: { id: id as string },
-      });
-      //{ message: 'category deleted successfully ' }
-      res.status(202).json(user);
+      try {
+        user = await prisma.user.delete({
+          where: { id: id as string },
+        });
+
+        res.status(204).json({ message: 'user deleted successfully' });
+      } catch (err) {
+        res.status(500).json(err);
+      }
       break;
     default:
       res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);

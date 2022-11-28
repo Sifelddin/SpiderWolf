@@ -8,22 +8,19 @@ export default async function gameHandler(
   const { method } = req;
   switch (method) {
     case 'GET':
-      try {
-        let users = await prisma.user.findMany();
-        res.status(200).json(users);
-      } catch (e) {
-        res.status(e.requestResult.statusCode).send(e.message);
-      }
+      let users = await prisma.user.findMany();
+      res.status(200).json(users);
       break;
     case 'POST':
       try {
         let user = await prisma.user.create({ data: req.body });
         res.status(201).json(user);
       } catch (e) {
-        res.status(e.requestResult.statusCode).send(e.message);
+        res.status(500).json(e);
       }
       break;
     default:
-      null;
+      res.setHeader('Allow', ['GET', 'POST']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

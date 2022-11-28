@@ -12,10 +12,15 @@ export default async function gameHandler(
       res.status(200).json(games);
       break;
     case 'POST':
-      let game = await prisma.game.create({ data: req.body });
-      res.status(201).json(game);
+      try {
+        let game = await prisma.game.create({ data: req.body });
+        res.status(201).json(game);
+      } catch (err) {
+        res.status(500).json(err);
+      }
       break;
     default:
-      null;
+      res.setHeader('Allow', ['GET', 'POST']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

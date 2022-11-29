@@ -39,23 +39,23 @@ const StyledBox = styled(Box)(({theme}) => ({
 }));
 
 const StyledImage = styled(Image)(({theme}) => ({
-    position: 'absolute',
     zIndex: 1000,
+    width: 'auto !important',
     [theme.breakpoints.up('xs')]: {
-        height: 225,
-        top: -22,
+        height: '225px !important',
+        top: '-22px !important',
     },
     [theme.breakpoints.up('sm')]: {
-        height: 250,
-        top: -22,
+        height: '250px !important',
+        top: '-22px !important',
     },
     [theme.breakpoints.up('md')]: {
-        height: 300,
-        top: -26,
+        height: '300px !important',
+        top: '-26px !important',
     },
     [theme.breakpoints.up('lg')]: {
-        height: 400,
-        top: -34,
+        height: '400px !important',
+        top: '-34px !important',
     },
 }));
 
@@ -83,7 +83,12 @@ function HeaderComponent() {
         <AppBar position='static' sx={{margin: 0, backgroundColor: 'primary.main'}}>
             <Container maxWidth='xl' disableGutters>
                 <Toolbar>
-                    <StyledImage src={logo.src} alt="Spiderwolf" />
+                    <StyledImage
+                        src={logo.src}
+                        alt="Spiderwolf"
+                        layout="fill"
+                        objectFit="contain"
+                        quality={100}/>
                     <Navbar/>
                     <StyledIconButton
                         edge='start'
@@ -134,6 +139,7 @@ function HeaderComponent() {
                                     <Button
                                         id='login-button'
                                         variant='contained'
+                                        className={isActive('/login')}
                                         sx={{
                                             m: 1,
                                             flex: 1,

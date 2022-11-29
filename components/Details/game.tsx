@@ -1,12 +1,20 @@
 import * as React from 'react';
-import { Box, Button, Link, Grid, Stack, Typography } from '@mui/material'
+import {Box, Button, Link, Grid, Stack, Typography} from '@mui/material'
+import Image from "next/image";
+import {styled} from "@mui/material/styles";
 
-export default function Game({ game, ...props }: any) {
+const StyledImage = styled(Image)(({theme}) => ({
+    [theme.breakpoints.up('sm')]: {
+        position: 'static !important'
+    }
+}));
+
+export default function Game({game, ...props}: any) {
     return (
         <Stack
-            direction={{ sm: 'column', md: 'row' }}
+            direction={{sm: 'column', md: 'row'}}
             justifyContent="space-between"
-            textAlign={{ sm: 'center', md: 'left' }}
+            textAlign={{sm: 'center', md: 'left'}}
         >
             <Box
                 component="div"
@@ -17,36 +25,42 @@ export default function Game({ game, ...props }: any) {
                     my: 5,
                 }}
             >
-                <Grid item xs={4} sx={{ mx: { sm: 0, md: 5 } }}>
-                    <img src={game.image.src} alt="" width="100%" height="auto" />
+                <Grid item xs={4} sx={{mx: {sm: 0, md: 5}}}>
+                    <StyledImage
+                        src={game.image.src}
+                        alt={game.title}
+                        layout="fill"
+                        objectFit="contain"
+                        quality={100}
+                    />
                 </Grid>
             </Box>
-            <Box component="div" sx={{ flex: 1, my: 5, color: 'light.main' }}>
-                <Typography variant="h3" component="h1" sx={{ mb: 5 }}>
+            <Box component="div" sx={{flex: 1, my: 5, color: 'light.main'}}>
+                <Typography variant="h3" component="h1" sx={{mb: 5}}>
                     {game.title.toUpperCase()}
                 </Typography>
                 <Box>
                     <Typography variant="h6" component="h5">
                         DEVELOPPEUR:{' '}
-                        <Box component="span" sx={{ color: 'primary.main' }}>
+                        <Box component="span" sx={{color: 'primary.main'}}>
                             {game.developer}
                         </Box>
                     </Typography>
                     <Typography variant="h6" component="h5">
                         EDITEUR:{' '}
-                        <Box component="span" sx={{ color: 'primary.main' }}>
+                        <Box component="span" sx={{color: 'primary.main'}}>
                             {game.editor}
                         </Box>
                     </Typography>
                     <Typography variant="h6" component="h5">
                         DATE DE SORTIE:{' '}
-                        <Box component="span" sx={{ color: 'primary.main' }}>
+                        <Box component="span" sx={{color: 'primary.main'}}>
                             {game.release_date}
                         </Box>
                     </Typography>
                     <Typography variant="h6" component="h5">
                         GENRE:{' '}
-                        <Box component="span" sx={{ color: 'primary.main' }}>
+                        <Box component="span" sx={{color: 'primary.main'}}>
                             {game.genre}
                         </Box>
                     </Typography>

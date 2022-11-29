@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { Box, Paper, Stack, Typography } from '@mui/material'
+import { Box, Paper, Stack, Typography, Link } from '@mui/material'
+
+import {useRouter} from "next/router";
 
 export default function Related({ games, ...props }: any) {
+    const router = useRouter()
     return ( <Stack direction="column" justifyContent="space-between" textAlign="center">
         <Box
             component="div"
@@ -24,21 +27,23 @@ export default function Related({ games, ...props }: any) {
                 <Box
                     sx={{ flex: 1, mb: 5, p: 2 }}
                     key={k.id}
+                    component={Link}
+                    onClick={() => router.push(`/games/${k.id}`)}
                 >
-                    <Paper
-                        sx={{
-                            backgroundImage: `url(${k.image.src})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center center',
-                            height: '300px',
-                            '&:hover': {
-                                boxShadow: '0 10px 71px rgba(47,91,234,.175)',
-                                transform: 'scale(1.1)',
-                                cursor: 'pointer',
-                            },
-                            transition: 'transform 0.3s',
-                        }}
-                    ></Paper>
+                        <Paper
+                            sx={{
+                                backgroundImage: `url(${k.image.src})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center center',
+                                height: '300px',
+                                '&:hover': {
+                                    boxShadow: '0 10px 71px rgba(47,91,234,.175)',
+                                    transform: 'scale(1.1)',
+                                    cursor: 'pointer',
+                                },
+                                transition: 'transform 0.3s',
+                            }}
+                        ></Paper>
                 </Box>
             ))}
         </Stack>

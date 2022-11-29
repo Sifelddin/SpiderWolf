@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 import {Box, Container, Stack} from "@mui/system";
 import {Typography} from "@mui/material";
 import {gameList as data} from "../../datas/gameList";
@@ -9,7 +9,7 @@ import Related from "./related";
 
 function DetailsComponent() {
     const router = useRouter()
-    const { id } = router.query
+    const {id} = router.query
     const pid = parseInt(typeof id === 'string' ? id : '1')
 
     return (
@@ -27,7 +27,7 @@ function DetailsComponent() {
                     py: 5,
                 }}
             >
-                <Container sx={{ py: 5 }}>
+                <Container sx={{py: 5}}>
                     {data.map((v) =>
                         v.id === pid ? (
                             <div key={v.id}>
@@ -71,7 +71,7 @@ function DetailsComponent() {
                             </div>
                         ) : null
                     )}
-                    <Box sx={{ height: '300px' }}></Box>
+                    <Box sx={{height: '300px'}}></Box>
                 </Container>
             </Box>
         </Box>

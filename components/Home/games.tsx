@@ -65,10 +65,8 @@ function Games() {
                                     <StyledImage
                                         src={v.image.src}
                                         alt={v.title}
-                                        layout="fill"
-                                        objectFit="cover"
-                                        quality={100}
-                                    />
+                                        width={400}
+                                        height={400} />
                                 </Box>
                                 <CardContent>
                                     <Typography

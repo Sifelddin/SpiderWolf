@@ -42,20 +42,24 @@ const StyledImage = styled(Image)(({theme}) => ({
     zIndex: 1000,
     width: 'auto !important',
     [theme.breakpoints.up('xs')]: {
-        height: '225px !important',
-        top: '-22px !important',
+        position: 'absolute !important',
+        height: '150px !important',
+        top: '0px !important',
     },
     [theme.breakpoints.up('sm')]: {
-        height: '250px !important',
-        top: '-22px !important',
+        position: 'absolute !important',
+        height: '200px !important',
+        top: '0px !important',
     },
     [theme.breakpoints.up('md')]: {
-        height: '300px !important',
-        top: '-26px !important',
+        position: 'absolute !important',
+        height: '250px !important',
+        top: '0px !important',
     },
     [theme.breakpoints.up('lg')]: {
-        height: '400px !important',
-        top: '-34px !important',
+        position: 'absolute !important',
+        height: '350px !important',
+        top: '0px !important',
     },
 }));
 
@@ -86,9 +90,8 @@ function HeaderComponent() {
                     <StyledImage
                         src={logo.src}
                         alt="Spiderwolf"
-                        layout="fill"
-                        objectFit="contain"
-                        quality={100}/>
+                        width={925}
+                        height={1396} />
                     <Navbar/>
                     <StyledIconButton
                         edge='start'

@@ -4,8 +4,10 @@ import Image from "next/image";
 import {styled} from "@mui/material/styles";
 
 const StyledImage = styled(Image)(({theme}) => ({
-    [theme.breakpoints.up('sm')]: {
-        position: 'static !important'
+    [theme.breakpoints.up('xs')]: {
+        position: 'static !important',
+        width: '100% !important',
+        height: '100% !important'
     }
 }));
 
@@ -29,10 +31,9 @@ export default function Game({game, ...props}: any) {
                     <StyledImage
                         src={game.image.src}
                         alt={game.title}
-                        layout="fill"
-                        objectFit="contain"
-                        quality={100}
-                    />
+                        width={100}
+                        height={100}
+                        quality={100}/>
                 </Grid>
             </Box>
             <Box component="div" sx={{flex: 1, my: 5, color: 'light.main'}}>

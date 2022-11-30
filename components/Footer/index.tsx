@@ -21,42 +21,35 @@ const StyledBox = styled(Box)(({theme}) => ({
 }))
 
 const StyledImage = styled(Image)(({theme}) => ({
+    zIndex: 1000,
     [theme.breakpoints.down('md')]: {
-        width: '300 !important',
         position: 'static !important',
+        width: 'auto !important',
+        height: '313px !important',
     },
     [theme.breakpoints.up('md')]: {
         position: 'absolute !important',
-        marginRight: '80px !important',
+        marginRight: '50px !important',
         marginTop: '-100px !important',
-        width: '500px !important',
-        height: 'auto !important',
-        top: 'auto !important',
+        width: 'auto !important',
+        height: '313px !important',
         right: '0px !important',
-        bottom: 'auto !important',
-        left: 'auto !important',
     },
     [theme.breakpoints.up('lg')]: {
         position: 'absolute !important',
-        marginRight: '90px !important',
+        marginRight: '100px !important',
         marginTop: '-200px !important',
-        width: '600px !important',
-        height: 'auto !important',
-        top: 'auto !important',
+        width: 'auto !important',
+        height: '413px !important',
         right: '0px !important',
-        bottom: 'auto !important',
-        left: 'auto !important',
     },
     [theme.breakpoints.up('xl')]: {
         position: 'absolute !important',
-        marginRight: '100px !important',
+        marginRight: '200px !important',
         marginTop: '-300px !important',
-        width: '700px !important',
-        height: 'auto !important',
-        top: 'auto !important',
+        width: 'auto !important',
+        height: '513px !important',
         right: '0px !important',
-        bottom: 'auto !important',
-        left: 'auto !important',
     },
 }))
 
@@ -120,9 +113,8 @@ function FooterComponent() {
                                 <StyledImage
                                     src={logo.src}
                                     alt="Spiderwolf"
-                                    layout="fill"
-                                    objectFit="contain"
-                                    quality={100}/>
+                                    width={885}
+                                    height={770} />
                             </Link>
                         </Box>
                     </Grid>

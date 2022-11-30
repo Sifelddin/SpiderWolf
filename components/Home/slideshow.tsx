@@ -36,7 +36,7 @@ export default function Slideshow(props: any) {
                     md: '800px',
                     sm: '600px',
                     xs: '400px',
-                },
+                }
             }}
         >
             {items.map((item, index) => (
@@ -50,6 +50,7 @@ const Banner = (props: any) => {
     const contentPosition = props.contentPosition ? props.contentPosition : 'left'
     const totalItems = props.length ? props.length : 3
     const mediaLength = totalItems - 1
+    //const mediaLength = 1
 
     let items = []
     const content = (
@@ -74,8 +75,7 @@ const Banner = (props: any) => {
                                 xs: 'none',
                                 md: 'block',
                             },
-                        }}
-                    >
+                        }}>
                         {item.title}
                     </Typography>
                 </CardMedia>

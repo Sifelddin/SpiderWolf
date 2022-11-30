@@ -53,7 +53,7 @@ function Games() {
                     Nos Jeux
                 </Typography>
             </StyledBox>
-            <Stack direction={{xs: 'column', sm: 'row'}} spacing={10}>
+            <Stack direction={{xs: 'column', md: 'row'}} spacing={10}>
                 {data.map((v) => {
                     return (
                         <Card sx={{maxWidth: 345}} key={v.id}>

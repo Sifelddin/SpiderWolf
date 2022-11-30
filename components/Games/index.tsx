@@ -134,6 +134,10 @@ function GamesComponent() {
                                                     sx={{
                                                         display: 'flex',
                                                         backgroundColor: 'light.main',
+                                                        flexDirection: {
+                                                            xs: 'column',
+                                                            md: 'row'
+                                                        }
                                                     }}>
                                                     <CardMedia
                                                         component="img"
@@ -148,7 +152,11 @@ function GamesComponent() {
                                                             sx={{
                                                                 color: 'primary.main',
                                                                 float: 'left',
-                                                                marginLeft: 5,
+                                                                marginLeft: {
+                                                                    xs: 0,
+                                                                    md: 5
+                                                                },
+                                                                textAlign: 'justify'
                                                             }}>
                                                             {v.description}
                                                         </Typography>

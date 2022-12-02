@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CacheProvider } from '@emotion/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-
+import { SessionProvider } from 'next-auth/react';
 import createEmotionCache from '../utility/createEmotionCache';
 import lightTheme from '../styles/theme/lightTheme';
 import mainTheme from '../styles/theme/mainTheme';
@@ -17,7 +17,9 @@ const MyApp = (props: any) => {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={mainTheme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <SessionProvider session={pageProps.session}>
+          <Component {...pageProps} />
+        </SessionProvider>
       </ThemeProvider>
     </CacheProvider>
   );

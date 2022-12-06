@@ -3,6 +3,7 @@ import GitHubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '../../../script';
+import bcrypt from 'bcrypt';
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -30,12 +31,25 @@ export default NextAuth({
           },
         });
         if (user) {
-          return user;
+          let result = await bcrypt.compare(password as string, user.password);
+          if (result) {
+            return user;
+          } else {
+            throw new Error('invalid email or password');
+          }
         } else {
-          throw new Error('invalid credentials');
+          throw new Error('invalid email or password');
         }
       },
     }),
   ],
   pages: { signIn: '/login' },
+  callbacks: {
+    jwt(params) {
+      if (params.user?.role) {
+        params.token.role = params.user.role;
+      }
+      return params.token;
+    },
+  },
 });

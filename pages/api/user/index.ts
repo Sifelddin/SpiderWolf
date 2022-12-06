@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import bcrypt from 'bcrypt';
 import prisma from '../../../script';
 
 export default async function gameHandler(
@@ -13,6 +14,9 @@ export default async function gameHandler(
       break;
     case 'POST':
       try {
+        const { password } = req.body;
+        let hash = await bcrypt.hash(password, 10);
+        req.body.password = hash;
         let user = await prisma.user.create({ data: req.body });
         res.status(201).json(user);
       } catch (e) {

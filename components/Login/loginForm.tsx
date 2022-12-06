@@ -2,16 +2,18 @@ import * as React from 'react';
 import { signIn } from 'next-auth/react';
 import { InputLabel, Box, Button, Stack, TextField } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
+import Router from 'next/router';
+import { env } from 'process';
+import { register } from 'ts-node';
 
 const LoginForm = () => {
   const { handleSubmit, control } = useForm();
   const onSubmit = async (d: any) => {
-    signIn('credentials', {
+    let res = await signIn('credentials', {
       email: d.email,
       password: d.pass,
       redirect: false,
     });
-    console.log(d);
   };
 
   return (
@@ -68,18 +70,6 @@ const LoginForm = () => {
               />
             )}
           />
-          {/* <TextField
-                        size="small"
-                        sx={{
-                            background: "white",
-                            border: 0,
-                            mt: 2
-                        }}
-                        required
-                        variant="outlined"
-                        id="password"
-                        type="password"
-                    /> */}
         </div>
       </Stack>
       <Box sx={{ display: 'flex' }}>

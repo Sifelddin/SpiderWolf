@@ -51,5 +51,11 @@ export default NextAuth({
       }
       return params.token;
     },
+    session({ session, token }) {
+      if (token?.role) {
+        session.role = token?.role;
+      }
+      return session;
+    },
   },
 });

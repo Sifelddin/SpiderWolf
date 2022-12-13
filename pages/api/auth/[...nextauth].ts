@@ -45,13 +45,13 @@ export default NextAuth({
   ],
   pages: { signIn: '/login' },
   callbacks: {
-    jwt(params) {
+    async jwt(params) {
       if (params.user?.role) {
         params.token.role = params.user.role;
       }
       return params.token;
     },
-    session({ session, token }) {
+    async session({ session, token }) {
       if (token?.role) {
         session.role = token?.role;
       }

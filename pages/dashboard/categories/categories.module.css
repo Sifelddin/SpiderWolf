@@ -1,0 +1,17 @@
+.cell {
+  padding: 2px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  padding: 5px 10px;
+  margin-bottom: 1rem;
+  background-color: cornflowerblue;
+  font-size: large;
+  color: white;
+  border: none;
+}
+.btn:hover {
+  color: blue;
+  background-color: white;
+}

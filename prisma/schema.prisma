@@ -12,6 +12,7 @@ datasource db {
 
 model Game {
   id               String    @id @default(uuid())
+  title            String
   developer        String?   @db.VarChar(100)
   editor           String?   @db.VarChar(100)
   releaseDate      DateTime  @db.Date
@@ -58,36 +59,36 @@ model Category {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  firstname String
-  lastname  String
-  pseudo    String?
-  email     String   @unique @db.VarChar(255)
+  id            String    @id @default(uuid())
+  firstname     String
+  lastname      String
+  pseudo        String?
+  email         String    @unique @db.VarChar(255)
   emailVerified DateTime?
-  password  String   @db.VarChar(255)
-  salt      String?  @db.VarChar(255)
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Order     Order[]
+  password      String    @db.VarChar(255)
+  salt          String?   @db.VarChar(255)
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  Order         Order[]
   accounts      Account[]
   sessions      Session[]
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?  
-  id_token           String?  @db.Text
-  session_state      String?
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -107,6 +108,7 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
 // model payMethod {
 //   cardNumber String @id
 //   dateExpiration String 

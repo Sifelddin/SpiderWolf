@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { env } from 'process';
+import { postData } from '../../utility/fetchData';
 type RegisterInputs = {
   email: string;
   password: string;
@@ -28,25 +29,8 @@ const RegisterForm = () => {
 
     if (password === password_confirm) {
       let data = { password, email, lastname, firstname, pseudo };
-      const postData = async (data: any, baseUrl: string, endpoint: string) => {
-        try {
-          const response = await fetch(`${baseUrl}${endpoint}`, {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          });
-          let result = await response.json();
-          if (result) {
-            alert('you have been registered!');
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      postData(data, 'http://localhost:3000/', 'api/user');
+
+      postData(data, 'http://localhost:3000/', 'api/user', 'POST');
     }
   };
 

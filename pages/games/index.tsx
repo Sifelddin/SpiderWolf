@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import HeaderComponent from "../../components/Header";
 import FooterComponent from "../../components/Footer";
-import GamesComponent from '../../components/Games'
+import GamesComponent from '../../components/Game'
 import styles from "../../styles/Home.module.css";
 import ScrollComponent from "../../components/Scroll";
 

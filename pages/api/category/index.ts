@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import prisma from '../../../script';
@@ -7,21 +8,17 @@ export default async function categoryHandler(
   res: NextApiResponse,
 ) {
   const session = await getSession({ req });
-  console.log(session);
 
   const { method } = req;
   let category = undefined;
   switch (method) {
     case 'GET':
-      if (session?.role === 'ADMIN') {
-        let categories = await prisma.category.findMany();
-        res.status(200).json(categories);
-      } else {
-        res.status(401).end('not allowed');
-      }
+      let categories = await prisma.category.findMany();
+      res.status(200).json(categories);
+
       break;
     case 'POST':
-      if (session?.role === 'ADMIN') {
+      if (session?.role === Role.ADMIN) {
         try {
           category = await prisma.category.create({ data: req.body });
           res.status(201).json(category);

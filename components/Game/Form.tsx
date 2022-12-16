@@ -7,7 +7,7 @@ import { postData } from '../../utility/fetchData';
 type GameInputs = {
   developer: String;
   editor: String;
-  releaseDate: String;
+  releaseDate: string | Date;
   genre: String;
   link: String;
   shortDescription: String;
@@ -23,7 +23,7 @@ const Form = (props: { categories: Category[]; game?: Game }) => {
   const { register, handleSubmit } = useForm<GameInputs>();
 
   const onSubmit = (data: GameInputs) => {
-    console.log(data);
+    data.releaseDate = new Date(data.releaseDate);
 
     postData(
       data,
@@ -41,11 +41,19 @@ const Form = (props: { categories: Category[]; game?: Game }) => {
         {/* register your input into the hook by invoking the "register" function */}
         <label htmlFor='title'>Title</label>
         <div>
-          <input id='title' {...register('title', { required: true })} />
+          <input
+            defaultValue={game?.title}
+            id='title'
+            {...register('title', { required: true })}
+          />
         </div>
         <label htmlFor='editor'>Editor</label>
         <div>
-          <input id='editor' {...register('editor', { required: true })} />
+          <input
+            defaultValue={game?.editor === null ? undefined : game?.editor}
+            id='editor'
+            {...register('editor', { required: true })}
+          />
         </div>
         <label htmlFor='releaseDate'>Release Date</label>
         <div>
@@ -57,15 +65,24 @@ const Form = (props: { categories: Category[]; game?: Game }) => {
         </div>
         <label htmlFor='genre'>Genre</label>
         <div>
-          <input id='genre' {...register('genre', { required: true })} />
+          <input
+            defaultValue={game?.genre}
+            id='genre'
+            {...register('genre', { required: true })}
+          />
         </div>
         <label htmlFor='link'>Link</label>
         <div>
-          <input id='link' {...register('link', { required: true })} />
+          <input
+            defaultValue={game?.link}
+            id='link'
+            {...register('link', { required: true })}
+          />
         </div>
         <label htmlFor='shortDescription'>Short Description</label>
         <div>
           <input
+            defaultValue={game?.shortDescription}
             type='text'
             id='shortDescription'
             {...register('shortDescription', { required: true })}

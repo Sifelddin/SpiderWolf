@@ -15,10 +15,12 @@ export const postData = async (
     });
     let result = await response.json();
     if (result) {
+      console.log(result);
+
       alert('you have been registered!');
     }
     return result;
   } catch (e) {
-    console.log(JSON.parse(e));
+    console.log(e);
   }
 };

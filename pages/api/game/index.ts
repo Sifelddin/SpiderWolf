@@ -13,9 +13,13 @@ export default async function gameHandler(
       break;
     case 'POST':
       try {
+        console.log(req.body);
+
         let game = await prisma.game.create({ data: req.body });
         res.status(201).json(game);
       } catch (err) {
+        console.log(err);
+
         res.status(500).json(err);
       }
       break;
